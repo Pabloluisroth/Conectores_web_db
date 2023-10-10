@@ -1,12 +1,14 @@
-let mysql = require('mysql');
-let db = require('./config/db');
-let connection = mysql.createConnection(db);
+
+const mysql = require('mysql');
+const db = require('./config/db');
+const connection = mysql.createConnection(db);
 
 // connect to the MySQL server
 connection.connect(function(err) {
   if (err) {
     return console.error('error: ' + err.message);
   }
+
 
 let consultas = `create table if not exists users(
                 id int primary key auto_increment,
@@ -29,6 +31,8 @@ let consultas = `create table if not exists users(
 
                `; 
 
+               
+    
   connection.query(consultas,[1, 2, 3], function(err, results, fields) {
     if (err) {
       console.log(err.message);
@@ -43,3 +47,4 @@ let consultas = `create table if not exists users(
     }
   });
 });
+
